@@ -1,0 +1,24 @@
+<div class="form">
+    <mat-card>
+        <mat-card-title>Login</mat-card-title>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" placeholder="Enter your e-mail" #userEmail>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Enter your password" #userPwd>
+        </mat-form-field>
+        <span *ngIf="errorMessage" class="error-msg mt-10 red-text">{{ errorMessage }}</span>
+        <div class="button-area">
+            <button mat-raised-button color="primary" (click)="authService.SignIn(userEmail.value, userPwd.value)"
+                class="mb-32 width-125">Login</button>
+            <button mat-raised-button class="mb-32 width-125" (click)="authService.GuestSignIn()">Guest Login</button>
+        </div>
+        <div class="redirectToLogin">
+            <span class="no-account">Don't have an account?</span>
+            <button class="width-125" routerLink="/register-user" mat-raised-button color="primary">
+                Sign Up</button>
+        </div>
+    </mat-card>
+</div>
