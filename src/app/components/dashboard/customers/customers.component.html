@@ -7,9 +7,9 @@
                 <th>City</th>
             </tr>
             <tr *ngFor="let customer of allCustomers">
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.city }}</td>
             </tr>
         </table>
     </mat-card-content>

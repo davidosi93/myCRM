@@ -1,8 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Customers } from '../model/customers';
-import { Firestore, collection, addDoc, collectionData, updateDoc, doc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
-import { user } from 'rxfire/auth';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
@@ -12,13 +11,12 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class DialogAddUserComponent implements OnInit {
   firestore: Firestore = inject(Firestore);
-  customerCollection = collection(this.firestore, 'users');
   customer: Customers = new Customers();
   birthDate!: Date;
   loading = false;
 
 
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService,) {
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService) {
     
    }
 
@@ -27,12 +25,12 @@ export class DialogAddUserComponent implements OnInit {
   }
 
   saveCustomer() {
+    this.customer.birthDate = this.birthDate.getTime();
     this.loading = true;
-    let ref = collection(this.firestore, `users/${this.authService.userData.uid}/customers`)
+    let ref = collection(this.firestore, `users/${this.authService.userData.uid}/customers`);
     addDoc(ref, this.customer.toJSON())
       .then((result) => {
         this.loading = false;
-        console.log("Adding customer finished", result);
         this.dialogRef.close();
       })
   }
