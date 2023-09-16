@@ -1,8 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Customers } from '../model/customers';
-import { Firestore, collection, addDoc, collectionData, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, updateDoc, doc } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { user } from 'rxfire/auth';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -12,15 +13,14 @@ import { Observable } from 'rxjs';
 export class DialogAddUserComponent implements OnInit {
   firestore: Firestore = inject(Firestore);
   customerCollection = collection(this.firestore, 'users');
-  customer$: Observable<any[]>;
   customer: Customers = new Customers();
   birthDate!: Date;
   loading = false;
-  
 
-  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {
-    this.customer$ = collectionData(this.customerCollection);
-  }
+
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService,) {
+    
+   }
 
   ngOnInit() {
 
@@ -28,8 +28,9 @@ export class DialogAddUserComponent implements OnInit {
 
   saveCustomer() {
     this.loading = true;
-    addDoc(this.customerCollection, this.customer.toJSON())
-      .then(result => {
+    let ref = collection(this.firestore, `users/${this.authService.userData.uid}/customers`)
+    addDoc(ref, this.customer.toJSON())
+      .then((result) => {
         this.loading = false;
         console.log("Adding customer finished", result);
         this.dialogRef.close();

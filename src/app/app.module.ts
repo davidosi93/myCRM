@@ -32,6 +32,8 @@ import { DialogAddUserComponent } from './components/dialog-add-user/dialog-add-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -58,6 +60,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDatepickerModule,
     MatDialogModule,
     MatNativeDateModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
