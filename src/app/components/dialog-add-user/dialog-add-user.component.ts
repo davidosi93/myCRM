@@ -29,7 +29,7 @@ export class DialogAddUserComponent implements OnInit {
     this.loading = true;
     let ref = collection(this.firestore, `users/${this.authService.userData.uid}/customers`);
     addDoc(ref, this.customer.toJSON())
-      .then((result) => {
+      .then(() => {
         this.loading = false;
         this.dialogRef.close();
       })
