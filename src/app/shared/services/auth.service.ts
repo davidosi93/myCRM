@@ -9,12 +9,18 @@ import {
 import { Router } from '@angular/router';
 import { SignInComponent } from 'src/app/components/sign-in/sign-in.component';
 import { ErrorServiceService } from './error-service.service';
+import { CustomersComponent } from 'src/app/components/dashboard/customers/customers.component';
+import { Observable } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
+
 export class AuthService {
   userData: any; // Save logged in user data
   signIn: SignInComponent;
+  authUser$: Observable<firebase.default.User | null>;
+
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -24,6 +30,7 @@ export class AuthService {
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
+    this.authUser$ = this.afAuth.authState;
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
@@ -35,6 +42,7 @@ export class AuthService {
       }
     });
   }
+
   // Sign in with email/password
   async SignIn(email: string, password: string) {
     try {
