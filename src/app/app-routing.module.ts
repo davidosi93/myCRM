@@ -5,6 +5,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { CustomersComponent } from './components/dashboard/customers/customers.component';
+import { CustomerDetailComponent } from './components/dashboard/customer-detail/customer-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const routes: Routes = [
   {
     path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
     children: [
-      { path: 'customers', component: CustomersComponent }
+      { path: 'customers', component: CustomersComponent },
+      { path: 'customers/:id', component: CustomerDetailComponent }
     ]
   },
 ];

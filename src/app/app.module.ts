@@ -33,6 +33,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { CustomerDetailComponent } from './components/dashboard/customer-detail/customer-detail.component';
 
 
 
@@ -43,7 +44,8 @@ import { FormsModule } from '@angular/forms';
     SignInComponent,
     SignUpComponent,
     CustomersComponent,
-    DialogAddUserComponent
+    DialogAddUserComponent,
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule,
