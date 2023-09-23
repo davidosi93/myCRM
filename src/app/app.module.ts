@@ -32,8 +32,12 @@ import { DialogAddUserComponent } from './components/dialog-add-user/dialog-add-
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+
 import { CustomerDetailComponent } from './components/dashboard/customer-detail/customer-detail.component';
+import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
+import { DialogEditAddressComponent } from './components/dialog-edit-address/dialog-edit-address.component';
 
 
 
@@ -45,7 +49,9 @@ import { CustomerDetailComponent } from './components/dashboard/customer-detail/
     SignUpComponent,
     CustomersComponent,
     DialogAddUserComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    DialogEditUserComponent,
+    DialogEditAddressComponent
   ],
   imports: [
     BrowserModule,
@@ -62,6 +68,7 @@ import { CustomerDetailComponent } from './components/dashboard/customer-detail/
     MatDatepickerModule,
     MatDialogModule,
     MatNativeDateModule,
+    MatMenuModule,
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

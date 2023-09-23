@@ -1,7 +1,7 @@
 export class Customers {
     firstName: string;
     lastName: string;
-    birthDate: number;
+    birthDate: string | number | Date;
     street: string;
     zipCode: number;
     city: string;

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddUserComponent } from '../../dialog-add-user/dialog-add-user.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -18,7 +18,6 @@ export class CustomersComponent implements OnInit {
     this.customerService.getCustomersWithIds().subscribe(customers => {
       this.allCustomers = customers;
     });
-
   }
 
   openDialog() {
