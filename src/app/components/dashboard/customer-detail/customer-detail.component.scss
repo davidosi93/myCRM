@@ -28,6 +28,12 @@
     }
 }
 
+.pin-left-upper-corner {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 .pin-right-upper-corner {
     position: absolute;
     right: 0;
@@ -38,4 +44,33 @@
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+.customer-notes {
+    margin: 16px 0;
+
+    button {
+        margin: 0 25%;
+        margin-bottom: 20px;
+    }
+
+    mat-card-title {
+        padding: 16px 16px 0;
+    }
+
+    mat-form-field {
+        margin: 0;
+    }
+}
+
+.notes {
+    background-color: rgb(128 128 128 / 14%);
+
+    h2 {
+        padding: 16px 16px 0 16px;
+    }
+
+    mat-card-title {
+        text-align: center;
+    }
 }

@@ -34,10 +34,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 import { CustomerDetailComponent } from './components/dashboard/customer-detail/customer-detail.component';
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 import { DialogEditAddressComponent } from './components/dialog-edit-address/dialog-edit-address.component';
+import { DialogAddNotesComponent } from './components/dialog-add-notes/dialog-add-notes.component';
 
 
 
@@ -51,7 +56,8 @@ import { DialogEditAddressComponent } from './components/dialog-edit-address/dia
     DialogAddUserComponent,
     CustomerDetailComponent,
     DialogEditUserComponent,
-    DialogEditAddressComponent
+    DialogEditAddressComponent,
+    DialogAddNotesComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +76,9 @@ import { DialogEditAddressComponent } from './components/dialog-edit-address/dia
     MatNativeDateModule,
     MatMenuModule,
     FormsModule,
+    TextFieldModule,
+    MatSelectModule,
+    MatProgressBarModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

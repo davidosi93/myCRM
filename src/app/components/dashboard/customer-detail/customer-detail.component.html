@@ -3,6 +3,9 @@
 </button>
 
 <mat-card class="user-detail-header">
+    <button mat-icon-button class="pin-left-upper-corner" (click)="openNotesDialog()" matTooltip="Add Notes +">
+        <mat-icon>add</mat-icon>
+    </button>
     <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="userMenu">
         <mat-icon>more_vert</mat-icon>
     </button>
@@ -35,3 +38,13 @@
     <button mat-icon-button (click)="deleteUser()" class="pin-right-bottom-corner"><mat-icon
             color="warn">delete</mat-icon></button>
 </mat-card>
+
+<div class="notes">
+    <h2>Notes</h2>
+    <mat-card class="mt-32 adress pb-16" *ngFor="let note of allNotes">
+        <mat-card-content>
+            <h2>{{ note.title }}</h2> <br>
+            <p>{{ note.text }}</p>
+        </mat-card-content>
+    </mat-card>
+</div>
