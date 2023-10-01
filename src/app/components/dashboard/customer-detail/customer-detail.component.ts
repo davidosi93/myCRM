@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogEditUserComponent } from '../../dialog-edit-user/dialog-edit-user.component';
 import { DialogEditAddressComponent } from '../../dialog-edit-address/dialog-edit-address.component';
 import { DialogAddNotesComponent } from '../../dialog-add-notes/dialog-add-notes.component';
+import { DialogEditNoteComponent } from '../../dialog-edit-note/dialog-edit-note.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CustomerService } from 'src/app/shared/services/customer.service';
 import { AppComponent } from 'src/app/app.component';
@@ -27,9 +28,12 @@ export class CustomerDetailComponent implements OnInit {
   firestore: Firestore = inject(Firestore);
   docRef: any;
   customerId: any;
+  notesId: string | null = null;
   customer: Customers = new Customers();
+  notes: Notes = new Notes();
   docSnap: any;
-  allNotes: Notes[] = [];
+  allNotes: { id: string, notes: Notes }[] = [];
+  selectedNoteIndex: number | null = null;
 
   constructor(private route: ActivatedRoute,
     private location: Location,
@@ -55,18 +59,6 @@ export class CustomerDetailComponent implements OnInit {
     this.setupNotesListener();
   }
 
-  private setupNotesListener() {
-    const notesRef: Query<DocumentData> = query(
-      collection(this.firestore, `users/${this.authService.userData.uid}/customers/${this.customerId}/notes`)
-    );
-    onSnapshot(notesRef, (snapshot: QuerySnapshot<DocumentData>) => {
-      this.allNotes = snapshot.docs.map((doc) => doc.data() as Notes);
-      console.log(this.allNotes);
-    });
-  }
-
-
-
   getBirthdate() {
     if (this.customer && this.customer.birthDate) {
       let timestamp = this.customer.birthDate;
@@ -78,6 +70,18 @@ export class CustomerDetailComponent implements OnInit {
       return dayOfBirth;
     }
     return '';
+  }
+
+  private setupNotesListener() {
+    let notesRef = collection(this.firestore, `users/${this.authService.userData.uid}/customers/${this.customerId}/notes`);
+    onSnapshot(notesRef, (snapshot: QuerySnapshot<DocumentData>) => {
+      this.allNotes = snapshot.docs.map((doc) => {
+        const id = doc.id;
+        const notes = doc.data() as Notes;
+        return { id, notes };
+      });
+
+    });
   }
 
   editMenuUserDetail() {
@@ -107,5 +111,35 @@ export class CustomerDetailComponent implements OnInit {
     const dialog = this.dialog.open(DialogAddNotesComponent);
     dialog.componentInstance.customer = new Customers(this.customer);
     dialog.componentInstance.customerId = this.customerId;
+  }
+
+  editNotes() {
+    if (this.notesId !== null) {
+      let selectedNote = this.allNotes.find(note => note.id === this.notesId);
+      if (selectedNote) {
+        const dialog = this.dialog.open(DialogEditNoteComponent);
+        dialog.componentInstance.customer = new Customers(this.customer);
+        dialog.componentInstance.customerId = this.customerId;
+        dialog.componentInstance.notes = new Notes(selectedNote.notes);
+        dialog.componentInstance.notesId = this.notesId;
+      }
+    }
+  }
+
+  selectNote(index: number) {
+    if (this.allNotes[index]) {
+      let selectedNote = this.allNotes[index];
+      this.notesId = selectedNote.id;
+      this.editNotes();
+    }
+  }
+
+  async deleteNote(index: number) {
+    if (this.allNotes[index]) {
+      let selectedNote = this.allNotes[index];
+      this.notesId = selectedNote.id;
+      this.docRef = doc(this.firestore, `users/${this.authService.userData.uid}/customers`, this.customerId, 'notes', this.notesId);
+      await deleteDoc(this.docRef);
+    }
   }
 }

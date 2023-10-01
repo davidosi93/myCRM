@@ -41,10 +41,16 @@
 
 <div class="notes">
     <h2>Notes</h2>
-    <mat-card class="mt-32 adress pb-16" *ngFor="let note of allNotes">
-        <mat-card-content>
-            <h2>{{ note.title }}</h2> <br>
-            <p>{{ note.text }}</p>
-        </mat-card-content>
-    </mat-card>
+    <div class="notes-content">
+        <mat-card class="mt-32 pb-16 notes-card" *ngFor="let note of allNotes; let i = index">
+            <mat-card-content class="card-content">
+                <h3>{{ note.notes.title }}</h3> <br>
+                <p>{{ note.notes.text }}</p>
+            </mat-card-content>
+            <div class="notes-buttons">
+                <button mat-icon-button matTooltip="Edit" (click)="selectNote(i)"><mat-icon>edit</mat-icon></button>
+                <button mat-icon-button (click)="deleteNote(i)"><mat-icon color="warn">delete</mat-icon></button>
+            </div>
+        </mat-card>
+    </div>
 </div>

@@ -1,0 +1,18 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<h1 mat-dialog-title>Edit Note</h1>
+<div mat-dialog-content class="mat-dialog-content">
+    <div class="notes-input">
+        <mat-form-field class="mr-16" appearance="outline">
+            <mat-label>Title</mat-label>
+            <input [disabled]="loading" [(ngModel)]="notes.title" matInput placeholder="Title">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Text</mat-label>
+            <textarea [disabled]="loading" [(ngModel)]="notes.text" matInput placeholder="Text"></textarea>
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
+    <button [disabled]="loading" mat-button cdkFocusInitial (click)="saveNote()">Save</button>
+</div>

@@ -43,6 +43,7 @@ import { CustomerDetailComponent } from './components/dashboard/customer-detail/
 import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-edit-user.component';
 import { DialogEditAddressComponent } from './components/dialog-edit-address/dialog-edit-address.component';
 import { DialogAddNotesComponent } from './components/dialog-add-notes/dialog-add-notes.component';
+import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-edit-note.component';
 
 
 
@@ -57,7 +58,8 @@ import { DialogAddNotesComponent } from './components/dialog-add-notes/dialog-ad
     CustomerDetailComponent,
     DialogEditUserComponent,
     DialogEditAddressComponent,
-    DialogAddNotesComponent
+    DialogAddNotesComponent,
+    DialogEditNoteComponent
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@ export class DialogEditUserComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>, public app: AppComponent, public authService: AuthService) { }
 
   ngOnInit(): void {
-    this.birthDate = new Date(this.customer.birthDate);
+    this.birthDate = new Date(this.customer.birthDate);    
   }
 
   saveUser() {
