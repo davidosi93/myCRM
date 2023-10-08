@@ -36,6 +36,12 @@ mat-card-content {
             &:first-child {
                 padding-left: 16px;
             }
+
+            @media (max-width: 520px) {
+                &:last-child {
+                    display: none;
+                }
+            }
         }
 
         th {
@@ -46,6 +52,12 @@ mat-card-content {
 
             &:first-child {
                 padding-left: 16px;
+            }
+
+            @media (max-width: 520px) {
+                &:last-child {
+                    display: none;
+                }
             }
         }
 

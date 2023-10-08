@@ -37,6 +37,7 @@ import { FormsModule } from '@angular/forms';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { CustomerDetailComponent } from './components/dashboard/customer-detail/customer-detail.component';
@@ -44,7 +45,10 @@ import { DialogEditUserComponent } from './components/dialog-edit-user/dialog-ed
 import { DialogEditAddressComponent } from './components/dialog-edit-address/dialog-edit-address.component';
 import { DialogAddNotesComponent } from './components/dialog-add-notes/dialog-add-notes.component';
 import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-edit-note.component';
-
+import { DashboardContentComponent } from './components/dashboard/dashboard-content/dashboard-content.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { PrivacyPolicyComponent } from './components/dashboard/privacy-policy/privacy-policy.component';
+import { ImprintComponent } from './components/dashboard/imprint/imprint.component';
 
 
 @NgModule({
@@ -59,7 +63,10 @@ import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-ed
     DialogEditUserComponent,
     DialogEditAddressComponent,
     DialogAddNotesComponent,
-    DialogEditNoteComponent
+    DialogEditNoteComponent,
+    DashboardContentComponent,
+    PrivacyPolicyComponent,
+    ImprintComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +88,8 @@ import { DialogEditNoteComponent } from './components/dialog-edit-note/dialog-ed
     TextFieldModule,
     MatSelectModule,
     MatProgressBarModule,
+    NgApexchartsModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),

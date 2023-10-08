@@ -13,6 +13,12 @@
         object-fit: cover;
         border-radius: 100%;
     }
+
+    @media (max-width: 520px) {
+        flex-direction: column;
+        align-items: center;
+        min-height: unset;
+    }
 }
 
 .user-details {
@@ -25,6 +31,12 @@
 
     h2 {
         margin-bottom: 0;
+    }
+
+    @media (max-width: 520px) {
+        height: unset;
+        margin-left: unset;
+        justify-content: unset;
     }
 }
 

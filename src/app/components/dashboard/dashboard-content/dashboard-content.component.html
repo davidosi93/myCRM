@@ -1,0 +1,109 @@
+<h2>Dashboard</h2>
+
+<div class="dashboard">
+    <div class="dashboard-cards">
+        <div class="card">
+            <div class="card-header">
+                <p>New Deals this Month</p>
+            </div>
+            <div class="card-number">
+                <p>15</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <p># of Open Opportunities</p>
+            </div>
+            <div class="card-number">
+                <p>7</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <p>Value of Opportunities</p>
+            </div>
+            <div class="card-number">
+                <p>47,800.00 $</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <p>Average Sale Cycle</p>
+            </div>
+            <div class="card-number">
+                <p>2.5d</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <p>Lead to Opportunity Ratio</p>
+            </div>
+            <div class="card-number">
+                <p>100 %</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <p>Opportunity to Closed Won</p>
+            </div>
+            <div class="card-number">
+                <p>20 %</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <p>Average Won Deal Size</p>
+            </div>
+            <div class="card-number">
+                <p>4000.00 $</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <p>Percentage of Closed Won</p>
+            </div>
+            <div class="card-number">
+                <p>20 %</p>
+            </div>
+        </div>
+    </div>
+    <div class="charts">
+        <div class="chart-container">
+            <h2>Sold brands this year</h2>
+            <div id="chart">
+                <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+                    [responsive]="chartOptions.responsive"></apx-chart>
+            </div>
+        </div>
+
+        <div class="news-container">
+            <h1 class="news-heading">New York Times - Latest News</h1>
+            <div class="scrollable-news">
+                <ul class="news-list">
+                    <li *ngFor="let post of posts; let i = index" class="news-item">
+                        <a target="_blank" href="{{ post.url }}">
+                            <ng-container *ngIf="posts">
+                                <img *ngFor="let imageUrl of getImageUrls(post)" class="news-image" [src]="imageUrl"
+                                    alt="{{ post.title }}">
+                            </ng-container>
+                            <div>
+                                {{ post.title }}
+                                <p>Click here to read the article</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -9,6 +9,18 @@
 
 .sidenav {
     width: 300px;
+
+    &.mat-drawer-side {
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.mat-sidenav-content {
+    transition: margin-left 0.3s ease-in-out;
+
+    &.mat-drawer-push {
+        margin-left: 300px;
+    }
 }
 
 .logo-container {
@@ -21,15 +33,21 @@
 
     img {
         height: 40px;
+        width: 100%;
+        object-fit: cover;
     }
 }
 
-mat-toolbar, mat-toolbar-row {
+mat-toolbar,
+mat-toolbar-row {
     min-height: 56px;
     height: 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 22;
 }
 
 .menu-items {
@@ -59,6 +77,11 @@ mat-toolbar, mat-toolbar-row {
     }
 }
 
+.customer-icon {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    ;
+}
+
 .toolbar-left {
     display: flex;
     align-items: center;
@@ -72,4 +95,8 @@ mat-icon {
     padding-top: 16px;
     padding-left: 56px;
     padding-right: 56px;
+
+    @media (max-width: 520px) {
+        padding: unset;
+    }
 }
