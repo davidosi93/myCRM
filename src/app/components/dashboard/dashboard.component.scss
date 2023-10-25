@@ -58,6 +58,10 @@ mat-slide-toggle {
     justify-content: center;
     background-color: var(--logo-background-color);
     color: white;
+
+    span {
+        font-size: 24px;
+    }
 }
 
 mat-toolbar,
