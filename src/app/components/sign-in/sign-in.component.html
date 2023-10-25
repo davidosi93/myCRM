@@ -12,12 +12,12 @@
         <span *ngIf="errorMessage" class="error-msg mt-10 red-text">{{ errorMessage }}</span>
         <div class="button-area">
             <button mat-raised-button color="primary" (click)="authService.SignIn(userEmail.value, userPwd.value)"
-                class="mb-32 width-125">Login</button>
-            <button mat-raised-button class="mb-32 width-125" (click)="authService.GuestSignIn()">Guest Login</button>
+                class="mb-32 width-125" class="login-button">Login</button>
+            <button mat-raised-button class="mb-32 width-125" (click)="authService.GuestSignIn()" class="guest-login-button">Guest Login</button>
         </div>
         <div class="redirectToLogin">
             <span class="no-account">Don't have an account?</span>
-            <button class="width-125" routerLink="/register-user" mat-raised-button color="primary">
+            <button class="width-125" routerLink="/register-user" mat-raised-button color="primary" class="login-button">
                 Sign Up</button>
         </div>
     </mat-card>

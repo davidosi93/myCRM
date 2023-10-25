@@ -1,6 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
 import { User } from '../services/user';
-import * as auth from 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {
   AngularFirestore,
@@ -9,7 +8,6 @@ import {
 import { Router } from '@angular/router';
 import { SignInComponent } from 'src/app/components/sign-in/sign-in.component';
 import { ErrorServiceService } from './error-service.service';
-import { CustomersComponent } from 'src/app/components/dashboard/customers/customers.component';
 import { Observable } from 'rxjs';
 
 @Injectable({

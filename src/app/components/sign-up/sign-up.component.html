@@ -12,11 +12,11 @@
         <span *ngIf="errorMessage" class="error-msg mt-10 red-text">{{ errorMessage }}</span>
         <div class="button-area">
             <button mat-raised-button color="primary" (click)="authService.SignUp(userEmail.value, userPwd.value)"
-                class="mb-32 width-125">Sign Up</button>
+                class="mb-32 width-125" class="login-button">Sign Up</button>
         </div>
         <div class="redirectToLogin">
             <span class="no-account">Already have an account?</span>
-            <button class="width-125" routerLink="/sign-in" mat-raised-button color="primary">
+            <button class="width-125" routerLink="/sign-in" mat-raised-button color="primary" class="login-button">
                 Login</button>
         </div>
     </mat-card>
