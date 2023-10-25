@@ -1,6 +1,18 @@
+.customer-detail {
+    width: 70vw;
+
+    @media (max-width: 1024px) {
+        width: 95vw;
+    }
+}
+
+.arrow-back {
+    color: var(--main-content-text-color);
+}
+
 .user-detail-header {
     min-height: 250px;
-    background-color: #f0a51a;
+    background-color: var(--logo-background-color);
     color: white;
     display: flex;
     align-items: flex-end;
@@ -58,6 +70,10 @@
     bottom: 0;
 }
 
+.customer-adress {
+    padding: 0 16px 16px;
+}
+
 .customer-notes {
     margin: 16px 0;
 
@@ -76,7 +92,9 @@
 }
 
 .notes {
-    background-color: rgb(128 128 128 / 14%);
+    background-color: var(--header-background-color);
+    color: var(--main-content-text-color);
+    position: relative;
 
     h2 {
         padding: 16px 16px 0 16px;
@@ -120,4 +138,17 @@
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+mat-card {
+    background-color: var(--news-content-background-color);
+    color: var(--main-content-text-color);
+}
+
+mat-card-content {
+    color: var(--main-content-text-color);
+}
+
+.edit-icon {
+    color: var(--main-content-text-color);
 }

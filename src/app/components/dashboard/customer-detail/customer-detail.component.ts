@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
-import { Firestore, doc, getDoc, deleteDoc, collection, DocumentData, Query, query, onSnapshot, QuerySnapshot } from '@angular/fire/firestore';
+import { Firestore, doc, getDoc, deleteDoc, collection, DocumentData, onSnapshot, QuerySnapshot, getDocs } from '@angular/fire/firestore';
 import { Customers } from '../../model/customers';
 import { Notes } from '../../model/notes';
 import { MatDialog } from '@angular/material/dialog';
@@ -80,7 +80,6 @@ export class CustomerDetailComponent implements OnInit {
         const notes = doc.data() as Notes;
         return { id, notes };
       });
-
     });
   }
 
@@ -142,4 +141,12 @@ export class CustomerDetailComponent implements OnInit {
       await deleteDoc(this.docRef);
     }
   }
+
+  async getNotesForCustomer(customerId: string): Promise<Notes[]> {
+    const notesRef = collection(this.firestore, `users/${this.authService.userData.uid}/customers/${customerId}/notes`);
+    const notesSnapshot = await getDocs(notesRef);
+    const notes = notesSnapshot.docs.map((doc) => doc.data() as Notes);
+    return notes;
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ViewChild } from "@angular/core";
 import { ChartComponent } from "ng-apexcharts";
 import {
@@ -11,6 +11,9 @@ import {
   ApexPlotOptions
 } from "ng-apexcharts";
 import { Getapi } from 'src/app/shared/services/getapi.service';
+import { CustomerService } from 'src/app/shared/services/customer.service';
+import { CustomerDetailComponent } from '../customer-detail/customer-detail.component';
+import { Observable, forkJoin, from, map, mergeMap, of } from 'rxjs';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -33,9 +36,14 @@ export type BarChartOptions = {
   styleUrls: ['./dashboard-content.component.scss']
 })
 
-export class DashboardContentComponent implements OnInit {
+@Injectable({
+  providedIn: 'root',
+})
 
+export class DashboardContentComponent implements OnInit {
   posts: any = [];
+  allCustomers: any;
+  disabled = false;
 
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
@@ -43,11 +51,12 @@ export class DashboardContentComponent implements OnInit {
   @ViewChild("barchart") barchart: ChartComponent;
   public BarChartOptions: Partial<BarChartOptions>;
 
-  constructor(private apiService: Getapi) {
+  constructor(private apiService: Getapi, public customerService: CustomerService, private customerDetail: CustomerDetailComponent) {
     this.chartOptions = {
       series: [44, 55, 10, 21, 19],
       chart: {
-        type: "donut"
+        type: "donut",
+        foreColor: 'var(--main-content-text-color)'
       },
       labels: ["Lamborghini", "Ferrari", "Bugatti", "Aston Martin", "Bentley"],
       responsive: [
@@ -64,44 +73,48 @@ export class DashboardContentComponent implements OnInit {
         }
       ]
     };
-
-    this.BarChartOptions = {
-      series: [
-        {
-          name: "Total sales this year",
-          data: [80, 68, 101, 51, 95, 72]
-        }
-      ],
-      chart: {
-        type: "bar",
-        height: 250
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      xaxis: {
-        categories: [
-          "Seller A",
-          "Seller B",
-          "Seller C",
-          "Seller D",
-          "Seller E",
-          "Seller F"
-        ]
-      }
-    };
   }
 
   ngOnInit(): void {
     this.apiService.getPosts().subscribe((response: any) => {
       this.posts = response.results;
-      console.log(this.posts);
     });
+    this.loadCustomersWithNotes();
+  }
+
+  loadCustomersWithNotes(): void {
+    this.customerService.getCustomersWithIds()
+      .pipe(
+        mergeMap(customers => {
+          if (customers.length === 0) {
+            return of([]);
+          }
+          return this.loadCustomersWithNotesDetails(customers);
+        })
+      )
+      .subscribe(allCustomers => {
+        this.updateAllCustomersList(allCustomers);
+      });
+  }
+
+  loadCustomersWithNotesDetails(customers: any[]): Observable<any[]> {
+    const notesPromises = customers.map(customer => {
+      return from(this.customerDetail.getNotesForCustomer(customer.id))
+        .pipe(
+          map(notes => ({ ...customer, notesLength: notes.length }))
+        );
+    });
+    return forkJoin(notesPromises);
+  }
+
+  updateAllCustomersList(allCustomers: any[]): void {
+    if (allCustomers.length === 0) {
+      this.disabled = true;
+      this.allCustomers = [{ firstName: 'No customers yet' }];
+    } else {
+      this.allCustomers = allCustomers;
+      this.disabled = false;
+    }
   }
 
   getImageUrls(post) {

@@ -1,56 +1,58 @@
-<button mat-icon-button (click)="goBackToUserList()">
-    <mat-icon>arrow_back</mat-icon>
-</button>
-
-<mat-card class="user-detail-header">
-    <button mat-icon-button class="pin-left-upper-corner" (click)="openNotesDialog()" matTooltip="Add Notes +">
-        <mat-icon>add</mat-icon>
+<div class="customer-detail">
+    <button mat-icon-button (click)="goBackToUserList()">
+        <mat-icon class="arrow-back">arrow_back</mat-icon>
     </button>
-    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="userMenu">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #userMenu="matMenu">
-        <button mat-menu-item (click)="editMenuUserDetail()">Edit</button>
-    </mat-menu>
-    <img src="assets/img/profile1.png">
-    <div class="user-details" *ngIf="customer">
-        <h2>{{ customer.firstName }} {{ customer.lastName }}</h2>
-        <p>{{ customer.email }}</p>
-        <p>{{ getBirthdate() }}</p>
-    </div>
-</mat-card>
 
-<mat-card class="mt-32 adress pb-16">
-    <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="addressMenu">
-        <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #addressMenu="matMenu">
-        <button mat-menu-item (click)="editMenu()">Edit</button>
-    </mat-menu>
+    <mat-card class="user-detail-header">
+        <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="userMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #userMenu="matMenu">
+            <button mat-menu-item (click)="editMenuUserDetail()">Edit</button>
+        </mat-menu>
+        <img src="assets/img/profile1.png">
+        <div class="user-details" *ngIf="customer">
+            <h2>{{ customer.firstName }} {{ customer.lastName }}</h2>
+            <p>{{ customer.email }}</p>
+            <p>{{ getBirthdate() }}</p>
+        </div>
+    </mat-card>
 
-    <mat-card-header>
-        <mat-card-title>Address</mat-card-title>
-    </mat-card-header>
-    <mat-card-content *ngIf="customer">
-        {{ customer.street }} <br>
-        {{ customer.zipCode }} {{ customer.city }}
-    </mat-card-content>
-    <button mat-icon-button (click)="deleteUser()" class="pin-right-bottom-corner"><mat-icon
-            color="warn">delete</mat-icon></button>
-</mat-card>
+    <mat-card class="mt-32 adress pb-16">
+        <button mat-icon-button class="pin-right-upper-corner" [matMenuTriggerFor]="addressMenu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #addressMenu="matMenu">
+            <button mat-menu-item (click)="editMenu()">Edit</button>
+        </mat-menu>
 
-<div class="notes">
-    <h2>Notes</h2>
-    <div class="notes-content">
-        <mat-card class="mt-32 pb-16 notes-card" *ngFor="let note of allNotes; let i = index">
-            <mat-card-content class="card-content">
-                <h3>{{ note.notes.title }}</h3> <br>
-                <p>{{ note.notes.text }}</p>
-            </mat-card-content>
-            <div class="notes-buttons">
-                <button mat-icon-button matTooltip="Edit" (click)="selectNote(i)"><mat-icon>edit</mat-icon></button>
-                <button mat-icon-button (click)="deleteNote(i)"><mat-icon color="warn">delete</mat-icon></button>
-            </div>
-        </mat-card>
+        <mat-card-header>
+            <mat-card-title>Address</mat-card-title>
+        </mat-card-header>
+        <mat-card-content *ngIf="customer" class="customer-adress">
+            {{ customer.street }} <br>
+            {{ customer.zipCode }} {{ customer.city }}
+        </mat-card-content>
+        <button mat-icon-button (click)="deleteUser()" class="pin-right-bottom-corner"><mat-icon
+                color="warn">delete</mat-icon></button>
+    </mat-card>
+
+    <div class="notes">
+        <h2>Notes</h2>
+        <button mat-icon-button class="pin-right-upper-corner" (click)="openNotesDialog()" matTooltip="Add Notes +">
+            <mat-icon>add</mat-icon>
+        </button>
+        <div class="notes-content">
+            <mat-card class="mt-32 pb-16 notes-card" *ngFor="let note of allNotes; let i = index">
+                <mat-card-content class="card-content">
+                    <h3>{{ note.notes.title }}</h3> <br>
+                    <p>{{ note.notes.text }}</p>
+                </mat-card-content>
+                <div class="notes-buttons">
+                    <button mat-icon-button matTooltip="Edit" (click)="selectNote(i)"><mat-icon class="edit-icon">edit</mat-icon></button>
+                    <button mat-icon-button (click)="deleteNote(i)"><mat-icon color="warn">delete</mat-icon></button>
+                </div>
+            </mat-card>
+        </div>
     </div>
 </div>

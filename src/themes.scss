@@ -1,0 +1,55 @@
+[data-theme="light"] {
+    --header-background-color: #e5e8ea;
+    --header-border-color: #e5e8ea;
+    --header-menu-item-color: #231f20;
+    --header-theme-switch-background-color: #cccccc;
+    --header-theme-switch-before-background-color: #ffffff;
+    --header-theme-switch-checked-background-color: #2196f3;
+
+    --main-content-background-color: #ffffff;
+    --main-content-text-color: #231f20;
+
+    --news-content-background-color: #3f51b529;
+    --logo-background-color: #3f51b5;
+    --logo-text-color: #ffffff;
+    --content-background-color: #ffffff;
+    --mat-datepicker-calendar-container-background-color: #e5e8ea;
+    --mat-datepicker-calendar-date-text-color: #231f20;
+    --mat-datepicker-calendar-body-label-text-color: #231f20;
+    --mat-datepicker-calendar-header-text-color: #231f20;
+    --mat-datepicker-calendar-period-button-icon-color: #231f20;
+    --mat-datepicker-calendar-navigation-button-icon-color: #231f20;
+    --mat-datepicker-calendar-date-hover-state-background-color: #3f51b529;
+    --mat-datepicker-calendar-date-selected-state-background-color: #3f51b5;
+    --mat-datepicker-calendar-date-selected-disabled-state-background-color: #3f51b529;
+    --mat-menu-container-color: #ffffff;
+    --mat-menu-item-label-text-color: #231f20;
+}
+
+[data-theme="dark"] {
+    --header-background-color: #303033;
+    --header-border-color: #e5e8ea;
+    --header-menu-item-color: #ffffff;
+    --header-theme-switch-background-color: #cccccc;
+    --header-theme-switch-before-background-color: #ffffff;
+    --header-theme-switch-checked-background-color: #2196f3;
+
+    --main-content-background-color: #231f20;
+    --main-content-text-color: #ffffff;
+
+    --news-content-background-color: #9c27b036;
+    --logo-background-color: #9c27b0;
+    --logo-text-color: #303033;
+    --content-background-color: #232324;
+    --mat-datepicker-calendar-container-background-color: #303033;
+    --mat-datepicker-calendar-date-text-color: #ffffff;
+    --mat-datepicker-calendar-body-label-text-color: #ffffff;
+    --mat-datepicker-calendar-header-text-color: #ffffff;
+    --mat-datepicker-calendar-period-button-icon-color: #ffffff;
+    --mat-datepicker-calendar-navigation-button-icon-color: #ffffff;
+    --mat-datepicker-calendar-date-hover-state-background-color: #9c27b036;
+    --mat-datepicker-calendar-date-selected-state-background-color: #9c27b0;
+    --mat-datepicker-calendar-date-selected-disabled-state-background-color: #9c27b036;
+    --mat-menu-container-color: #231f20;
+    --mat-menu-item-label-text-color: #ffffff;
+}

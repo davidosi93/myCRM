@@ -37,6 +37,7 @@ import { FormsModule } from '@angular/forms';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -88,6 +89,7 @@ import { ImprintComponent } from './components/dashboard/imprint/imprint.compone
     TextFieldModule,
     MatSelectModule,
     MatProgressBarModule,
+    MatSlideToggleModule,
     NgApexchartsModule,
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

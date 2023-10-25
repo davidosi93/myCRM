@@ -1,0 +1,35 @@
+.privacy-policy {
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    padding: 12px;
+    color: var(--main-content-text-color);
+
+    a {
+        color: var(--main-content-text-color);
+    }
+
+    @media (max-width: 768px) {
+        width: 90vw;
+    }
+}
+
+.m-elements {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+        margin-bottom: 20px;
+        word-wrap: break-word;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    @media screen and (max-width: 768px) {
+        li {
+            margin-bottom: 10px;
+        }
+    }
+}

@@ -1,5 +1,15 @@
 h2 {
     text-align: center;
+    color: var(--main-content-text-color);
+}
+
+.dashboard {
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .dashboard-cards {
@@ -13,7 +23,8 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid #1976D2;
+    border: 2px solid var(--logo-background-color);
+    ;
     width: 200px;
     font-weight: 500;
     margin: 10px;
@@ -24,6 +35,7 @@ h2 {
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: var(--logo-background-color);
 
     p {
         color: white;
@@ -36,6 +48,7 @@ h2 {
     width: 100%;
     display: flex;
     justify-content: center;
+    color: var(--main-content-text-color);
 
     p {
         margin: 0;
@@ -58,9 +71,11 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--main-content-text-color);
 
     @media (max-width: 720px) {
         width: 100%;
+        margin-bottom: 16px;
     }
 }
 
@@ -71,16 +86,6 @@ h2 {
 
     @media (max-width: 520px) {
         min-width: unset;
-        margin: unset;
-    }
-}
-
-#barchart {
-    max-width: 650px;
-    margin: 35px auto;
-
-    @media (max-width: 520px) {
-        max-width: unset;
         margin: unset;
     }
 }
@@ -96,6 +101,19 @@ h2 {
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    background-color: var(--header-background-color);
+
+    h1 {
+        color: var(--main-content-text-color);
+    }
+
+    li {
+        background-color: var(--news-content-background-color);
+
+        div {
+            color: var(--main-content-text-color);
+        }
+    }
 }
 
 .scrollable-news {
@@ -124,7 +142,6 @@ h2 {
 .news-item {
     margin: 10px 0;
     padding: 10px;
-    background-color: #f5f5f5;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
@@ -138,10 +155,6 @@ h2 {
         @media (max-width: 520px) {
             flex-direction: column;
         }
-    }
-
-    &:hover {
-        background-color: #ddd;
     }
 
     p {
@@ -160,4 +173,82 @@ h2 {
         align-self: center;
         margin: 0;
     }
+}
+
+mat-card {
+    width: 100%;
+    background-color: var(--header-background-color);
+    color: var(--main-content-text-color);
+    margin-top: 16px;
+}
+
+mat-card-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        &:first-child {
+            cursor: unset;
+
+            &:hover {
+                background-color: unset;
+            }
+        }
+
+        cursor: pointer;
+
+        td {
+            height: 48px;
+
+            &:first-child {
+                padding-left: 16px;
+            }
+
+            &:last-child {
+                padding-right: 16px;
+                text-align: center;
+            }
+        }
+
+        th {
+            color: rgba(0, 0, 0, 0.5);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: start;
+            color: var(--main-content-text-color);
+
+            &:first-child {
+                padding-left: 16px;
+            }
+
+            &:last-child {
+                padding-right: 16px;
+                text-align: center;
+            }
+        }
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
+}
+
+.mat-mdc-card {
+    box-shadow: unset;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
 }

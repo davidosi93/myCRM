@@ -1,3 +1,14 @@
+mat-card {
+    width: 70vw;
+    background-color: var(--header-background-color);
+    color: var(--main-content-text-color);
+    margin-top: 16px;
+
+    @media (max-width: 720px) {
+        width: 100vw;
+    }
+}
+
 mat-card-content {
     padding-left: 0;
     padding-right: 0;
@@ -7,6 +18,12 @@ mat-card-content {
     position: absolute;
     right: 56px;
     bottom: 56px;
+    background-color: var(--logo-background-color);
+
+    @media (max-width: 1024px) {
+        right: 2%;
+        bottom: 2%;
+    }
 }
 
 .user-table {
@@ -49,6 +66,7 @@ mat-card-content {
             font-size: 14px;
             font-weight: 500;
             text-align: start;
+            color: var(--main-content-text-color);
 
             &:first-child {
                 padding-left: 16px;

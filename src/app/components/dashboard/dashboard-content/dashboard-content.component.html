@@ -74,12 +74,28 @@
             </div>
         </div>
     </div>
+
+    <mat-card>
+        <mat-card-content>
+            <table class="user-table">
+                <tr>
+                    <th>Name</th>
+                    <th>Notes</th>
+                </tr>
+                <tr *ngFor="let customer of allCustomers" [routerLink]="'../customers/' + customer.id" [class.disabled]="disabled ? true : null">
+                    <td>{{ customer.firstName }} {{ customer.lastName }}</td>
+                    <td>{{ customer.notesLength }}</td>
+                </tr>
+            </table>
+        </mat-card-content>
+    </mat-card>
+
     <div class="charts">
         <div class="chart-container">
             <h2>Sold brands this year</h2>
             <div id="chart">
                 <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
-                    [responsive]="chartOptions.responsive"></apx-chart>
+                    [dataLabels]="chartOptions" [responsive]="chartOptions.responsive"></apx-chart>
             </div>
         </div>
 

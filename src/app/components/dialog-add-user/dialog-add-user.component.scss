@@ -1,0 +1,30 @@
+.dialog {
+    background-color: var(--header-background-color);
+
+    h1 {
+        color: var(--main-content-text-color);
+    }
+
+    mat-label {
+        color: var(--main-content-text-color);
+    }
+
+    input {
+
+        ::placeholder {
+            color: var(--main-content-text-color);
+        }
+    }
+
+    button {
+        color: var(--main-content-text-color);
+    }
+}
+
+.date-picker {
+    color: var(--main-content-text-color);
+}
+
+::ng-deep .mdc-button__label {
+    color: var(--main-content-text-color);
+}

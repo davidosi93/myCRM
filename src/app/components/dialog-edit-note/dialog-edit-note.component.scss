@@ -3,3 +3,35 @@
     display: flex;
     flex-direction: column;
 }
+
+.dialog {
+    background-color: var(--header-background-color);
+
+    h1 {
+        color: var(--main-content-text-color);
+    }
+
+    mat-label {
+        color: var(--main-content-text-color);
+    }
+
+    input {
+        color: var(--main-content-text-color);
+
+        ::placeholder {
+            color: var(--main-content-text-color);
+        }
+    }
+
+    textarea {
+        color: var(--main-content-text-color);
+
+        ::placeholder {
+            color: var(--main-content-text-color);
+        }
+    }
+
+    button {
+        color: var(--main-content-text-color);
+    }
+}
