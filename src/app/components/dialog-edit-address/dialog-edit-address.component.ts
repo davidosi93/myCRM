@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./dialog-edit-address.component.scss']
 })
 export class DialogEditAddressComponent implements OnInit {
-  customer!: Customers;
+  customer: Customers = new Customers();
   loading = false;
   firestore: Firestore = inject(Firestore);
   customerId: any;

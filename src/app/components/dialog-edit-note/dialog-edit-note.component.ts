@@ -13,7 +13,7 @@ import { Notes } from '../model/notes';
 })
 export class DialogEditNoteComponent implements OnInit {
   customer!: Customers;
-  notes!: Notes;
+  notes: Notes = new Notes();
   loading = false;
   firestore: Firestore = inject(Firestore);
   customerId: any;

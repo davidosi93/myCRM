@@ -10,7 +10,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
-import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
@@ -34,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -73,6 +74,7 @@ import { ImprintComponent } from './components/dashboard/imprint/imprint.compone
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
@@ -86,6 +88,7 @@ import { ImprintComponent } from './components/dashboard/imprint/imprint.compone
     MatNativeDateModule,
     MatMenuModule,
     FormsModule,
+    ReactiveFormsModule,
     TextFieldModule,
     MatSelectModule,
     MatProgressBarModule,
@@ -102,7 +105,9 @@ import { ImprintComponent } from './components/dashboard/imprint/imprint.compone
     AngularFireStorageModule,
     AngularFireDatabaseModule,
   ],
-  providers: [],
+  providers: [
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

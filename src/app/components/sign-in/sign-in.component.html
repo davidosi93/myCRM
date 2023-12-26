@@ -3,11 +3,11 @@
         <mat-card-title>Login</mat-card-title>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>E-mail</mat-label>
-            <input matInput type="email" placeholder="Enter your e-mail" #userEmail>
+            <input matInput type="email" placeholder="Enter your e-mail" #userEmail [formControl]="usernameControl">
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput type="password" placeholder="Enter your password" #userPwd>
+            <input matInput type="password" placeholder="Enter your password" #userPwd [formControl]="passwordControl">
         </mat-form-field>
         <span *ngIf="errorMessage" class="error-msg mt-10 red-text">{{ errorMessage }}</span>
         <div class="button-area">

@@ -11,7 +11,7 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./dialog-edit-user.component.scss']
 })
 export class DialogEditUserComponent implements OnInit {
-  customer!: Customers;
+  customer: Customers = new Customers;
   loading = false;
   birthDate: Date | any;
   firestore: Firestore = inject(Firestore);
