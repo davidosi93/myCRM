@@ -5,11 +5,11 @@
         <div class="notes-input">
             <mat-form-field class="mr-16" appearance="outline">
                 <mat-label>Title</mat-label>
-                <input [disabled]="loading" [(ngModel)]="notes.title" matInput placeholder="Title">
+                <input [disabled]="loading" [(ngModel)]="notes.title" matInput>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Text</mat-label>
-                <textarea [disabled]="loading" [(ngModel)]="notes.text" matInput placeholder="Text"></textarea>
+                <textarea [disabled]="loading" [(ngModel)]="notes.text" matInput></textarea>
             </mat-form-field>
         </div>
     </div>
