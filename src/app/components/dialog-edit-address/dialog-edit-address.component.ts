@@ -3,6 +3,7 @@ import { Customers } from '../model/customers';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Firestore, doc, updateDoc } from '@angular/fire/firestore';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -23,14 +24,22 @@ export class DialogEditAddressComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  saveUser() {
-    this.loading = true;
-    this.docRef = doc(this.firestore, `users/${this.authService.userData.uid}/customers`, this.customerId);
-    this.updateData = this.customer.toJSON();
-    updateDoc(this.docRef, this.updateData)
-      .then(() => {
-        this.dialogRef.close();
-        this.loading = false;
-      })
+  onSubmit() {
+    if (this.saveAddressForm.valid) {
+      this.loading = true;
+      this.docRef = doc(this.firestore, `users/${this.authService.userData.uid}/customers`, this.customerId);
+      this.updateData = this.customer.toJSON();
+      updateDoc(this.docRef, this.updateData)
+        .then(() => {
+          this.dialogRef.close();
+          this.loading = false;
+        })
+    }
   }
+
+  saveAddressForm = new FormGroup({
+    street: new FormControl(''),
+    zipCode: new FormControl(''),
+    city: new FormControl('')
+  })
 }

@@ -3,6 +3,7 @@ import { Customers } from '../model/customers';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -17,21 +18,34 @@ export class DialogAddUserComponent implements OnInit {
 
 
   constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>, public authService: AuthService) {
-    
-   }
+
+  }
 
   ngOnInit() {
 
   }
 
-  saveCustomer() {
-    this.customer.birthDate = this.birthDate.getTime();
-    this.loading = true;
-    let ref = collection(this.firestore, `users/${this.authService.userData.uid}/customers`);
-    addDoc(ref, this.customer.toJSON())
-      .then(() => {
-        this.loading = false;
-        this.dialogRef.close();
-      })
+
+  onSubmit() {
+    if (this.saveCustomerForm.valid) {
+      this.customer.birthDate = this.birthDate.getTime();
+      this.loading = true;
+      let ref = collection(this.firestore, `users/${this.authService.userData.uid}/customers`);
+      addDoc(ref, this.customer.toJSON())
+        .then(() => {
+          this.loading = false;
+          this.dialogRef.close();
+        })
+    }
   }
+
+  saveCustomerForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl(''),
+    birth: new FormControl(''),
+    street: new FormControl(''),
+    zipCode: new FormControl(''),
+    city: new FormControl(''),
+  });
 }

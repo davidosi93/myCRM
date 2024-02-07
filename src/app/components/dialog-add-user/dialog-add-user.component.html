@@ -1,29 +1,32 @@
 <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-<div class="dialog">
+<form [formGroup]="saveCustomerForm" (ngSubmit)="onSubmit()" class="dialog">
     <h1 mat-dialog-title>Add Customer</h1>
     <div mat-dialog-content class="mat-dialog-content">
         <div>
             <mat-form-field class="mt-10" appearance="outline">
                 <mat-label>First Name</mat-label>
-                <input [disabled]="loading" [(ngModel)]="customer.firstName" matInput>
+                <input [(ngModel)]="customer.firstName" matInput required
+                    formControlName="firstName">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Last Name</mat-label>
-                <input [disabled]="loading" [(ngModel)]="customer.lastName" matInput>
+                <input [(ngModel)]="customer.lastName" matInput required
+                    formControlName="lastName">
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>E-Mail</mat-label>
-                <input [disabled]="loading" [(ngModel)]="customer.email" matInput>
+                <input [(ngModel)]="customer.email" matInput required formControlName="email">
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Birth Date</mat-label>
-                <input [disabled]="loading" [(ngModel)]="birthDate" matInput [matDatepicker]="picker1">
+                <input [(ngModel)]="birthDate" matInput [matDatepicker]="picker1" required
+                    formControlName="birth">
                 <mat-datepicker-toggle matIconSuffix [for]="picker1" class="date-picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker1 class="calendar"></mat-datepicker>
             </mat-form-field>
@@ -32,23 +35,23 @@
         <div>
             <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Street + House No.</mat-label>
-                <input [disabled]="loading" [(ngModel)]="customer.street" matInput>
+                <input [(ngModel)]="customer.street" matInput required formControlName="street">
             </mat-form-field>
         </div>
 
         <div>
             <mat-form-field appearance="outline" class="mr-16">
                 <mat-label>Zip code</mat-label>
-                <input [disabled]="loading" [(ngModel)]="customer.zipCode" matInput>
+                <input [(ngModel)]="customer.zipCode" matInput required formControlName="zipCode">
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>City</mat-label>
-                <input [disabled]="loading" [(ngModel)]="customer.city" matInput>
+                <input [(ngModel)]="customer.city" matInput required formControlName="city">
             </mat-form-field>
         </div>
     </div>
     <div mat-dialog-actions>
-        <button [disabled]="loading" mat-button (click)="dialogRef.close()">Cancel</button>
-        <button [disabled]="loading" mat-button cdkFocusInitial (click)="saveCustomer()">Save</button>
+        <button mat-button (click)="dialogRef.close()">Cancel</button>
+        <button mat-button cdkFocusInitial>Save</button>
     </div>
-</div>
+</form>
