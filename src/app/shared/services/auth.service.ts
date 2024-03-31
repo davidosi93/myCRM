@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { SignInComponent } from 'src/app/components/sign-in/sign-in.component';
 import { ErrorServiceService } from './error-service.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription, filter, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +18,14 @@ export class AuthService {
   userData: any; // Save logged in user data
   signIn: SignInComponent;
   authUser$: Observable<firebase.default.User | null>;
+  userSubscription: Subscription | undefined;
 
   constructor(
     public afs: AngularFirestore, // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public router: Router,
     public ngZone: NgZone,
-    private errorService: ErrorServiceService // NgZone service to remove outside scope warning
+    private errorService: ErrorServiceService, // NgZone service to remove outside scope warning
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -57,17 +58,16 @@ export class AuthService {
     }
   }
 
-  // Login Guest user
+  // Login as GuestUser
   async GuestSignIn() {
+    const guestEmail = 'guest@example.com';
+    const guestPassword = 'secureGuestPassword';
     try {
-      const result = await this.afAuth.signInAnonymously();
-      this.SetUserData(result.user);
-      this.afAuth.authState.subscribe((user) => {
-        if (user) {
-          this.router.navigate(['dashboard']);
-        }
-      });
+      const result = await this.afAuth.signInWithEmailAndPassword(guestEmail, guestPassword);
+      await this.SetUserData(result.user);
+      this.router.navigate(['dashboard']);
     } catch (error) {
+      console.error('Fehler bei der Gastanmeldung:', error);
       this.errorService.showError('Fehler bei der Gastanmeldung.');
     }
   }
